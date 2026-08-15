@@ -1,4 +1,4 @@
-AI Learning Journey
+🤖 AI Learning Journey 🤖
 
 Welcome to my Artificial Intelligence learning repository.
 
@@ -6,4 +6,4 @@ I have started my journey into AI and this repository is where I will document w
 
 My approach is:
 
-Learn → Practice → Build → Improve
+Learn → Practice → Build → Improve🧠
