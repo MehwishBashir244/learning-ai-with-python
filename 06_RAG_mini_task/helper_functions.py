@@ -1,39 +1,23 @@
-from openai import AzureOpenAI, DefaultHttpxClient
+from google import genai
 
-client = AzureOpenAI(
-    api_key="abcdefg",
-    api_version="2024-02-01",
-    azure_endpoint = "https://cour-external-playground.openai.azure.com/",
-    http_client=DefaultHttpxClient(verify=False)
-    )
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
-# +
+gemini_api_key = os.getenv("GEMINI_API_KEY")
 
-# ### If you want to use your own OpenAI key, uncomment these lines below
-
-# from openai import OpenAI
-
-# ### Add your key as a string
-# openai_api_key = "Add your key in here"
-
-# # Set up the OpenAI client
-# client = OpenAI(api_key=openai_api_key)
-
-# # Next, in the functions below, use the model commented 
-# # as "# USE THIS MODEL IF YOU ARE USING YOUR OWN OPENAI KEY" and comment-out the other model
-
-# -
-
+# Create Gemini client
+client = genai.Client(api_key=gemini_api_key)
 def print_llm_response(prompt):
     """This function takes as input a prompt, which must be a string enclosed in quotation marks,
-    and passes it to OpenAI's GPT3.5 model. The function then prints the response of the model.
+    and passes it to OpenAI's gemini-3.6-flash. The function then prints the response of the model.
     """
     try:
         if not isinstance(prompt, str):
             raise ValueError("Input must be a string enclosed in quotes.")
         completion = client.chat.completions.create(
-            model="gpt-35-turbo",
+            model="gemini-3.6-flash",
 #              model="gpt-3.5-turbo-0125", # USE THIS MODEL IF YOU ARE USING YOUR OWN OPENAI KEY
             messages=[
                 {
@@ -55,11 +39,11 @@ def print_llm_response(prompt):
 
 def get_llm_response(prompt):
     """This function takes as input a prompt, which must be a string enclosed in quotation marks,
-    and passes it to OpenAI's GPT3.5 model. The function then saves the response of the model as
+    and passes it to OpenAI's gemini-3.6-flash. The function then saves the response of the model as
     a string.
     """
     completion = client.chat.completions.create(
-        model="gpt-35-turbo",
+        model="gemini-3.6-flash",
 #          model="gpt-3.5-turbo-0125", # USE THIS MODEL IF YOU ARE USING YOUR OWN OPENAI KEY
         messages=[
             {
